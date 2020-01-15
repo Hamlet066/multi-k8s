@@ -8,7 +8,7 @@ before_install:
   - docker build -t hamletsargsyan/milti-server ./server
   - docker build -t hamletsargsyan/multi-worker ./worker
 # Log in to the docker CLI
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 # Take those images and push them to docker hub 
  
   - docker push hamletsargsyan/multi-client
