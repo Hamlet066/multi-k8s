@@ -11,7 +11,7 @@ before_install:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 # Take those images and push them to docker hub 
  
-  - docker push hamletsargsyan/multi-client
-  - docker push hamletsargsyan/multi-nginx
-  - docker push hamletsargsyan/multi-server
-  - docker push hamletsargsyan/multi-worker
+  - docker push hamo066/hamletsargsyan:multi-client
+  - docker push hamo066/hamletsargsyan:multi-nginx
+  - docker push hamo066/hamletsargsyan:multi-server
+  - docker push hamo066/hamletsargsyan:multi-worker
