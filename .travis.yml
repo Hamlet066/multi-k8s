@@ -5,7 +5,7 @@ services:
 before_install:
   - docker build -t hamo066/multi-client ./client
   - docker build -t hamo066/multi-nginx ./nginx
-  - docker build -t hamo066/milti-server ./server
+  - docker build -t hamo066/multi-server ./server
   - docker build -t hamo066/multi-worker ./worker
 # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
