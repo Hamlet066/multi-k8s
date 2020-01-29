@@ -1,0 +1,31 @@
+sudo: required
+language: generic
+services:
+  - docker
+
+before_install:
+  - docker build -t hamo066/multi-client ./client
+  - docker build -t hamo066/multi-nginx ./nginx
+  - docker build -t hamo066/multi-server ./server
+  - docker build -t hamo066/multi-worker ./worker
+# Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+# Take those images and push them to docker hub 
+ 
+  - docker push hamo066/multi-client
+  - docker push hamo066/multi-nginx
+  - docker push hamo066/multi-server
+  - docker push hamo066/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: us-east-2
+  app: multi-docker
+  env: MultiDocker-env
+  backet_name: elasticbeanstalk-us-east-2-104028460912
+  backet_path: docker-multi
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
