@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      component: server
+  template:
+    metadata:
+      labels:
+        component: server
+    spec:
+      containers:
+        - name: server
+          image: hamo066/multi-server:latest
+          ports:
+            - containerPort: 5000
+          env:
+            - name: REDIS_HOST
+              valeu: redis-cluster-ip-service
+            - name: REDIS_PORT
+              valeu: '6379'
+            - name: PGUSER
+              valeu: postgres
+            - name: PGHOST
+              valeu: postgres-cluster-ip-service
+            - name: PGPORT
+              valeu: '5432'
+            - name: PGDATABASE
+              valeu: postgres
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: pgpassword
+                  key: PGPASSWORD
