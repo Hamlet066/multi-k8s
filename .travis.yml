@@ -19,7 +19,7 @@ before_install:
 
 
 script:
-  - docker run hamo066/react-test  npm test -- --coverage
+  - docker run -e CI=true hamo066/react-test  npm test -- --coverage
 
 deploy:
   provider: script
