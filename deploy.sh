@@ -11,6 +11,6 @@ docker push hamo066/multi-server:$SHA
 docker push hamo066/multi-worker$SHA
 
 kubectl apply -f k8s --validate=false
-kubectl set image client-deloyment client=hamo066/multi-client:$SHA
-kubectl set image server-deloyment server=hamo066/multi-server:$SHA
-kubectl set image worker-deloyment worker=hamo066/multi-server:$SHA
+kubectl set image deployments/client-deloyment client=hamo066/multi-client:$SHA
+kubectl set image deployments/server-deloyment server=hamo066/multi-server:$SHA
+kubectl set image deployments/worker-deloyment worker=hamo066/multi-worker:$SHA
